@@ -1,3 +1,5 @@
+const noTruncarDecimales = {maximumFractionDigits: 2};
+
 //
 const root = document.getElementById('root');
 
@@ -226,17 +228,16 @@ arrayElement.forEach(item =>{
     tr.appendChild(th);
 });
 
-
-
 ///Creamos tabla body
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
-
 
 //calculo
 
 function calcularCuota(Saldo, interes, tiempo){
 
+    // Condicional inicialInput
+    //
     valorPrestamoInput.textContent=principalInput.value-inicialInput.value;
 
     while(tbody.firstChild){
@@ -254,7 +255,7 @@ function calcularCuota(Saldo, interes, tiempo){
             <td class='border'></td>
             <td class='border'></td>
             <td class='border'></td>
-            <td class='border'>${newSaldo}</td>
+            <td class='border'>${newSaldo.toLocaleString('en',noTruncarDecimales)}</td>
             <td class='border'></td>
             <td class='border'></td>
         `;
@@ -273,19 +274,19 @@ function calcularCuota(Saldo, interes, tiempo){
         const row = document.createElement('tr');
         row.innerHTML = `
             <td class='border bg-light'>${i}</td>
-            <td class='border bg-light'>${Amortizacion.toFixed(2)}</td>
-            <td class='border bg-light'>${pagoInteres.toFixed(2)}</td>
-            <td class='border bg-light'>${cuota.toFixed(2)}</td>
-            <td class='border bg-light'>${Saldo.toFixed(2)}</td>
-            <td class='border bg-light'>${Desgravamen.toFixed(2)}</td>
-            <td class='border bg-b1'>${Pago.toFixed(2)}</td>
+            <td class='border bg-light'>${Amortizacion.toLocaleString('en',noTruncarDecimales)}</td>
+            <td class='border bg-light'>${pagoInteres.toLocaleString('en',noTruncarDecimales)}</td>
+            <td class='border bg-light'>${cuota.toLocaleString('en',noTruncarDecimales)}</td>
+            <td class='border bg-light'>${Saldo.toLocaleString('en',noTruncarDecimales)}</td>
+            <td class='border bg-light'>${Desgravamen.toLocaleString('en',noTruncarDecimales)}</td>
+            <td class='border bg-b1'>${Pago.toLocaleString('en', noTruncarDecimales)}</td>
         `;
         tbody.appendChild(row);    
     }
 
-    pagoMenInput.textContent=cuota.toFixed(2);
-    TotalIntInput.textContent=counterInt.toFixed(2);
-    TotalPagoInput.textContent=counterPagos.toFixed(2);
+    pagoMenInput.textContent=cuota.toLocaleString('en',noTruncarDecimales);
+    TotalIntInput.textContent=counterInt.toLocaleString('en',noTruncarDecimales);
+    TotalPagoInput.textContent=counterPagos.toLocaleString('en',noTruncarDecimales);
 }
 
 calcular.addEventListener('click',() =>{
